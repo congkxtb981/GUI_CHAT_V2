@@ -1,17 +1,8 @@
 // function visitPage() {
 //   window.location = "sign-in.html";
 // };
-$(".menu a i").on("click", function() {
-  $(".menu a i").removeClass("active"), $(this).addClass("active");
-});
-$("#contact, #recipient").click(function() {
-  $(this).remove();
-});
-$(function() {
-  $('[data-toggle="tooltip"]').tooltip();
-});
 
-$(document).ready(function() {
+function filterMembers() {
   $(".filterMembers")
     .not(".all")
     .hide("3000"),
@@ -27,9 +18,9 @@ $(document).ready(function() {
           .filter("." + t)
           .show("3000");
     });
-});
+}
 
-$(document).ready(function() {
+function filterDiscussions() {
   $(".filterDiscussions")
     .not(".all")
     .hide("3000"),
@@ -45,26 +36,27 @@ $(document).ready(function() {
           .filter("." + t)
           .show("3000");
     });
-}),
-  $(document).ready(function() {
+}
+
+function filterNotifications() {
+  $(".filterNotifications")
+    .not(".all")
+    .hide("3000"),
     $(".filterNotifications")
       .not(".all")
       .hide("3000"),
+    $(".filterNotificationsBtn").click(function() {
+      var t = $(this).attr("data-filter");
       $(".filterNotifications")
-        .not(".all")
+        .not("." + t)
         .hide("3000"),
-      $(".filterNotificationsBtn").click(function() {
-        var t = $(this).attr("data-filter");
         $(".filterNotifications")
-          .not("." + t)
-          .hide("3000"),
-          $(".filterNotifications")
-            .filter("." + t)
-            .show("3000");
-      });
-  });
+          .filter("." + t)
+          .show("3000");
+    });
+}
 
-$(document).ready(function() {
+function people() {
   $("#people").on("keyup", function() {
     var t = $(this)
       .val()
@@ -78,9 +70,9 @@ $(document).ready(function() {
       );
     });
   });
-});
+}
 
-$(document).ready(function() {
+function conversations() {
   $("#conversations").on("keyup", function() {
     var t = $(this)
       .val()
@@ -94,9 +86,9 @@ $(document).ready(function() {
       );
     });
   });
-});
+}
 
-$(document).ready(function() {
+function notice() {
   $("#notice").on("keyup", function() {
     var t = $(this)
       .val()
@@ -110,9 +102,9 @@ $(document).ready(function() {
       );
     });
   });
-});
+}
 
-$(document).ready(function() {
+function chageDarkMode() {
   (clicked = !0),
     $(".mode").click(function() {
       clicked
@@ -122,6 +114,59 @@ $(document).ready(function() {
           (clicked = !1))
         : ($("#dark").remove(), (clicked = !0));
     });
+}
+
+// function spinLoaded() {
+//   $("#loading").css("display", "none");
+// }
+
+// function spinLoading() {
+//   $("#loading").css("display", "inline-block");
+// }
+// function loadAnimation() {
+//   $(document).ajaxStart(function() {
+//     spinLoading();
+//   });
+//   $(document).ajaxEnd(function() {
+//     spinLoaded();
+//   });
+// }
+
+$(window).on("load", function(event) {
+  $("body").removeClass("preloading");
+  $(".loader")
+    .delay(2000)
+    .css("display", "none");
+  // $(".loader")
+  //   .delay(1000)
+  //   .fadeOut("fast");
+});
+
+$(".menu a i").on("click", function() {
+  $(".menu a i").removeClass("active"), $(this).addClass("active");
+});
+$("#contact, #recipient").click(function() {
+  $(this).remove();
+});
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
+$(document).ready(function() {
+
+  filterMembers();
+
+  filterDiscussions();
+
+  filterNotifications();
+
+  people();
+
+  conversations();
+
+  notice();
+
+  chageDarkMode();
 });
 
 $(".back").click(function() {

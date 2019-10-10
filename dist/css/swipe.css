@@ -256,6 +256,34 @@ p {
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'liga'
 }
+  .material-icons:before {
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    content: '';
+    top: 100%;
+    left: 5%;
+    height: 10px;
+    width: 90%;
+    opacity: 0;
+    background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform, opacity;
+    transition-property: transform, opacity;
+  }
+  .material-icons:hover, .material-icons:focus, .material-icons:active {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+  .material-icons:hover:before, .material-icons:focus:before, .material-icons:active:before {
+    opacity: 1;
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+  }
+
+
 
 .material-icons.md-18 {
     font-size: 18px
@@ -514,8 +542,8 @@ input:checked+.slider:before {
 
 .navigation .inside .menu .material-icons {
     display: block;
-    font-size: 45px;
-    margin-bottom: 40px
+    font-size: 35px;
+    margin-bottom: 25px;
 }
 
 .navigation .inside .menu .material-icons.active {
@@ -2372,3 +2400,46 @@ input:checked+.slider:before {
         padding: 0 12px
     }
 }
+/* loadding icon */
+.loader {
+    /* display: none; */
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 64px;
+    height: 64px;
+    z-index: 10;
+  }
+.loader div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border: 6px solid #4297f4;
+    border-radius: 50%;
+    animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #4297f4 transparent transparent transparent;
+  }
+  .loader div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .loader div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .loader div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+/* end   */
+
+
